@@ -1,4 +1,5 @@
 {
+    "id": "todo",
     "name": "Todo",
     "description": "a simple script to add todo items to the table",
     "version": "0.0.1",
