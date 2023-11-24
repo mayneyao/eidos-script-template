@@ -6,7 +6,7 @@ interface Env {
 
 interface Table {
   // add your tables here
-  todos: EidosTable<{
+  todo: EidosTable<{
     title: string;
   }>;
 }
@@ -24,8 +24,8 @@ interface Context {
 
 export default async function (input: Input, context: Context) {
   console.log("Hello Eidos!");
-  const tableName = context.tables.todos.name;
-  const fieldMap = context.tables.todos.fieldsMap;
+  const tableName = context.tables.todo.name;
+  const fieldMap = context.tables.todo.fieldsMap;
   const res = await eidos.currentSpace.addRow(tableName, {
     [fieldMap.title]: input.content,
   });
