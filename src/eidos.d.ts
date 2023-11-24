@@ -138,14 +138,7 @@ interface Space {
 
 declare const eidos: Eidos;
 
-interface EidosField {
-  id: string;
-  name: string;
-  type: string;
-  ref?: string;
-}
-
-interface EidosTable<T = Record<string, EidosField>> {
+interface EidosTable<T = Record<string, string>> {
   id: string;
   name: string;
   fieldsMap: T;
