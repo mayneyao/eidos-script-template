@@ -1,4 +1,5 @@
-/// <reference path="eidos.d.ts" />
+import { Eidos, EidosTable } from "@eidos.space/types";
+declare const eidos: Eidos;
 
 interface Env {
   // add your environment variables here
@@ -6,6 +7,7 @@ interface Env {
 
 interface Table {
   // add your tables here
+  // key is a variable name of field you want to use, value is id of the field instance
   todo: EidosTable<{
     title: string;
   }>;
@@ -24,10 +26,20 @@ interface Context {
 
 export default async function (input: Input, context: Context) {
   console.log("Hello Eidos!");
-  const tableName = context.tables.todo.name;
+  const tableId = context.tables.todo.id;
   const fieldMap = context.tables.todo.fieldsMap;
-  const res = await eidos.currentSpace.addRow(tableName, {
-    [fieldMap.title]: input.content,
-  });
-  console.log(res);
+  const table = eidos.currentSpace.table(tableId);
+  const newTodo = await table.rows.create(
+    {
+      [fieldMap.title]: input.content,
+    },
+    {
+      // useFieldId is a good practice to avoid field name changes.
+      useFieldId: true,
+    }
+  );
+  console.log(newTodo);
+  return {
+    todoId: newTodo._id,
+  };
 }

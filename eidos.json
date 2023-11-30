@@ -3,7 +3,7 @@
     "name": "Todo",
     "description": "a simple script to add todo items to the table",
     "version": "0.0.1",
-    "main": "src/main.js",
+    "main": "dist/main.js",
     "inputJSONSchema": {
         "type": "object",
         "properties": {

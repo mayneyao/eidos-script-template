@@ -1,13 +1,15 @@
 {
   "name": "eidos-script-template",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc"
+    "dev": "esbuild src/main.ts --bundle --outfile=dist/main.js --platform=browser --format=esm --loader:.html=text --watch",
+    "build": "esbuild src/main.ts --bundle --outfile=dist/main.js --platform=browser --format=esm --loader:.html=text"
   },
   "devDependencies": {
+    "@eidos.space/types": "^0.0.5",
+    "esbuild": "^0.19.7",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
   }
